@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const SmsSchema = new mongoose.Schema({
-    name: 'Sms',
+    name: {type:String, default:'Sms'},
     messages: [
         {  type: mongoose.Schema.Types.ObjectId,
           ref: 'SmsMessage',

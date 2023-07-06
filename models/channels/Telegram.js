@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const TelegramSchema = new mongoose.Schema({
-  name: 'Telegram',
+  name: {type:String, default:'Telegram'},
   messages: [
       {  type: mongoose.Schema.Types.ObjectId,
         ref: 'TelegramMessage',

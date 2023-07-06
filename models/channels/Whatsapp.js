@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const WhatsappSchema = new mongoose.Schema({
-    name: 'Whatsapp',
+    name: {type:String, default:'Whatsapp'},
     messages: [
         {  type: mongoose.Schema.Types.ObjectId,
           ref: 'WhatsappMessage',

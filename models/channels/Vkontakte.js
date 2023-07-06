@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const VkontakteSchema = new mongoose.Schema({
-    name: 'Vkontakte',
+    name: {type:String, default:'Vkontakte'},
     messages: [
         {  type: mongoose.Schema.Types.ObjectId,
           ref: 'VkontakteMessage',

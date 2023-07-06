@@ -3,7 +3,21 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 const connectDB = require('./db');
 
+const vkontakteRouter = require('./routes/vkontakteRouter');
+const smsRouter = require('./routes/smsRouter');
+const whatsappRouter = require('./routes/whatsappRouter');
+const telegramRouter = require('./routes/telegramRouter');
+
 const app = express();
 connectDB();
+
+app.use('/vk', vkontakteRouter);
+app.use('/sms', smsRouter);
+app.use('/whatsapp', whatsappRouter);
+app.use('/tg', telegramRouter);
+
+app.all('*', (req, res, next) => {
+    next(new Error('Страница не найдена'));
+  });
 
 app.listen(port, console.log(`Server running on ${port}`));
