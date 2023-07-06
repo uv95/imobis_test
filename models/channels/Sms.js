@@ -2,12 +2,17 @@ const mongoose = require('mongoose');
 
 const SmsSchema = new mongoose.Schema({
     name: {type:String, default:'Sms'},
-    messages: [
-        {  type: mongoose.Schema.Types.ObjectId,
-          ref: 'SmsMessage',
-        },
-    ]
-});
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  });
+  
+  SmsSchema.virtual('messages', {
+    ref: 'SmsMessage',
+    foreignField: 'channel',
+    localField: '_id',
+  });
 
 const Sms = mongoose.model('Sms', SmsSchema);
 

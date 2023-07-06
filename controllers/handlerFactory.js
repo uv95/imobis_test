@@ -23,10 +23,9 @@ exports.createOne = (Model) =>
     });
   });
 
-  exports.getOne = (Model) =>
+  exports.getOne = (Model,populateOptions='') =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findById(req.params.id);
-
+    const doc = await Model.findById(req.params.id).populate(populateOptions)
     if (!doc) {
       return next(new Error('Document not found!'));
     }

@@ -2,11 +2,16 @@ const mongoose = require('mongoose');
 
 const TelegramSchema = new mongoose.Schema({
   name: {type:String, default:'Telegram'},
-  messages: [
-      {  type: mongoose.Schema.Types.ObjectId,
-        ref: 'TelegramMessage',
-      },
-  ]
+},
+{
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
+});
+
+TelegramSchema.virtual('messages', {
+  ref: 'TelegramMessage',
+  foreignField: 'channel',
+  localField: '_id',
 });
 
 const Telegram = mongoose.model('Telegram', TelegramSchema);

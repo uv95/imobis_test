@@ -2,11 +2,16 @@ const mongoose = require('mongoose');
 
 const VkontakteSchema = new mongoose.Schema({
     name: {type:String, default:'Vkontakte'},
-    messages: [
-        {  type: mongoose.Schema.Types.ObjectId,
-          ref: 'VkontakteMessage',
-        },
-    ]
+},
+{
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
+});
+
+VkontakteSchema.virtual('messages', {
+  ref: 'VkontakteMessage',
+  foreignField: 'channel',
+  localField: '_id',
 });
 
 const Vkontakte = mongoose.model('Vkontakte', VkontakteSchema);

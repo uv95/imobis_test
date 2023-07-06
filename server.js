@@ -10,6 +10,8 @@ const telegramRouter = require('./routes/telegramRouter');
 
 const app = express();
 connectDB();
+app.use(express.json());
+
 
 app.use('/vk', vkontakteRouter);
 app.use('/sms', smsRouter);
