@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 
-const whatsappSchema = new mongoose.Schema({
-  messages: [
-      {
-          text: { type: String, maxlength: [1000, 'Текст должен быть не длиннее 1000 символов!']},
-          keyboard : { 
+const WhatsappMessageSchema = new mongoose.Schema({
+  text: { type: String, maxlength: [1000, 'Текст должен быть не длиннее 1000 символов!']},
+  keyboard : { 
             current: {
                 type: String, 
                 enum: ['standard', 'inline'], 
@@ -21,10 +19,12 @@ const whatsappSchema = new mongoose.Schema({
                 supportsLinks: {type:Boolean, default:true}
                 }
             },
-      },
-  ]
+     channel:{
+         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Whatsapp',
+              }
 });
 
-const Whatsapp = mongoose.model('Whatsapp', whatsappSchema);
+const WhatsappMessage = mongoose.model('WhatsappMessage', WhatsappMessageSchema);
 
-module.exports = Whatsapp;
+module.exports = WhatsappMessage;

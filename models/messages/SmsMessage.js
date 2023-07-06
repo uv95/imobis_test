@@ -1,30 +1,30 @@
 const mongoose = require('mongoose');
 
-const smsSchema = new mongoose.Schema({
-  messages: [
-      {
-          text: { type: String},
-          keyboard : { 
-            current: {
+const SmsMessageSchema = new mongoose.Schema({
+text: { type: String},
+keyboard : { 
+        current: {
                 type: String, 
                 enum: ['standard', 'inline'], 
                 default: 'standard'
             },
-            standard: { 
+        standard: { 
                 maxButtons: {type:Number, default: 40},   
                 maxTextLength: {type:Number, default: -1},
                 supportsLinks:{type:Boolean, default:true}
                 },
-            inline: { 
+        inline: { 
                 maxButtons: {type:Number, default: 40},   
                 maxTextLength: {type:Number, default: -1},
                 supportsLinks: {type:Boolean, default:true}
                 }
             },
-      },
-  ]
+    channel:{
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'Sms',
+              }
 });
 
-const Sms = mongoose.model('Sms', smsSchema);
+const SmsMessage = mongoose.model('SmsMessage', SmsMessageSchema);
 
-module.exports = Sms;
+module.exports = SmsMessage;
