@@ -1,0 +1,28 @@
+.Channels{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.myChannelsSection{
+   & h1{
+       margin-bottom: 2rem;
+   }
+}
+
+.myChannels{
+    display: flex;
+    gap: 2rem;
+}
+
+.allChannelsSection{
+    & h1{
+        margin-bottom: 2rem;
+    }
+}
+
+.allChannels{
+    display: flex;
+    gap: 2rem;
+}

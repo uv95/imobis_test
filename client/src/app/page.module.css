@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  background-color: #fff;
+  margin: auto;
+  width: 80%;
+  height: 80rem;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
