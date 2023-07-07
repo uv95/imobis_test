@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const VkontakteSchema = new mongoose.Schema({
-    name: {type:String, default:'Vkontakte'},
+    name: {type:String, default:'vkontakte'},
 },
 {
   toJSON: { virtuals: true },

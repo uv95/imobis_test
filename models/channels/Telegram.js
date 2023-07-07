@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const TelegramSchema = new mongoose.Schema({
-  name: {type:String, default:'Telegram'},
+  name: {type:String, default:'telegram'},
 },
 {
   toJSON: { virtuals: true },

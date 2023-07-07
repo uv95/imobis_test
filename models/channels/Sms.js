@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const SmsSchema = new mongoose.Schema({
-    name: {type:String, default:'Sms'},
+    name: {type:String, default:'sms'},
   },
   {
     toJSON: { virtuals: true },

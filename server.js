@@ -7,6 +7,7 @@ const vkontakteRouter = require('./routes/vkontakteRouter');
 const smsRouter = require('./routes/smsRouter');
 const whatsappRouter = require('./routes/whatsappRouter');
 const telegramRouter = require('./routes/telegramRouter');
+const allChannelsRouter = require('./routes/allChannelsRouter');
 const AppError = require('./utils/appError');
 
 const app = express();
@@ -18,6 +19,7 @@ app.use('/vk', vkontakteRouter);
 app.use('/sms', smsRouter);
 app.use('/whatsapp', whatsappRouter);
 app.use('/tg', telegramRouter);
+app.use('/channels', allChannelsRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError('Страница не найдена', 404));
