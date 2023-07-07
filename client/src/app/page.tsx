@@ -1,21 +1,20 @@
-'use client'
+import { Container } from '@/components/Container/Container'
+import { getAllChannels } from '@/utils/api';
+import { Suspense } from 'react';
 
-import { Channels } from '@/components/Channels/Channels';
-import { Main } from '@/components/Main/Main'
-import { MyTemplates } from '@/components/MyTemplates/MyTemplates';
-import { Sidebar } from '@/components/Sidebar/Sidebar'
-import { useState } from 'react';
 import style from './page.module.css'
 
-export default function Home() {
-    const [active, setActive] = useState('channels');
 
+export default async function Home() {
+    const channels = await getAllChannels()
+  
     return (
         <main className={style.main}>
-            <Sidebar active={active} setActive={setActive}/>
-            <Main>
-                {active==='channels' ? <Channels/> : <MyTemplates/>}
-            </Main>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Container channels={channels}/>
+            </Suspense>
         </main>
     )
 }
+
+

@@ -11,6 +11,7 @@ interface ChannelsProps {
 }
     
 export const Channels = ({ className }: ChannelsProps) => {
+    const channels=[{name:'telegram', icon:telegram },{name:'sms', icon:sms },{name:'whatsapp', icon:whatsapp },{name:'vkontakte', icon:vk }]
     return (
         <div className={style.Channels}>
             <section className={style.myChannelsSection}>
