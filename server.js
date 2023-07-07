@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 const connectDB = require('./db');
@@ -11,14 +12,15 @@ const allChannelsRouter = require('./routes/allChannelsRouter');
 const AppError = require('./utils/appError');
 
 const app = express();
+app.use(cors());
 connectDB();
 app.use(express.json());
 
 
-app.use('/vk', vkontakteRouter);
+app.use('/vkontakte', vkontakteRouter);
 app.use('/sms', smsRouter);
 app.use('/whatsapp', whatsappRouter);
-app.use('/tg', telegramRouter);
+app.use('/telegram', telegramRouter);
 app.use('/channels', allChannelsRouter);
 
 app.all('*', (req, res, next) => {

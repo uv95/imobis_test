@@ -10,10 +10,8 @@ exports.getMyChannels = catchAsync(async (req, res, next) => {
   const vk = await Vkontakte.find().populate('messages');
   const whatsapp = await Whatsapp.find().populate('messages');
 
-
-  const myChannels = [...telegram,...sms,...vk,...whatsapp].filter(item=>item);
-
-console.log(myChannels)
+  const myChannels = [...telegram,...sms,...vk,...whatsapp].filter(item=>item)
+  .sort((a,b)=>a.createdAt-b.createdAt)
 
   res.status(200).json({
     status: 'success',

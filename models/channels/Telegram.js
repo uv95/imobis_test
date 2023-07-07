@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 
 const TelegramSchema = new mongoose.Schema({
   name: {type:String, default:'telegram'},
-},
-{
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true },
-});
+  createdAt: Number,
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+    timestamps:{
+      currentTime: ()=>Date.now()},
+  }
+  );
 
 TelegramSchema.virtual('messages', {
   ref: 'TelegramMessage',

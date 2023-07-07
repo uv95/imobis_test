@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 
 const VkontakteSchema = new mongoose.Schema({
     name: {type:String, default:'vkontakte'},
-},
-{
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true },
-});
+    createdAt: Number,
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+    timestamps:{
+      currentTime: ()=>Date.now()},
+  }
+  );
 
 VkontakteSchema.virtual('messages', {
   ref: 'VkontakteMessage',

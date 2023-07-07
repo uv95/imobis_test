@@ -1,30 +1,34 @@
 'use client'
 
-import { ChannelsContext, ChannelsProvider } from '@/context/channelsContext';
-import { useContext, useEffect, useState } from 'react';
-import { Channels } from '../Channels/Channels';
-import { MyTemplates } from '../MyTemplates/MyTemplates';
+import { useChannelsContext } from '@/context/channelsContext';
+import {  useEffect, useState } from 'react';
 import { Sidebar } from '../Sidebar/Sidebar';
 import style from './Container.module.scss';
-    
-interface ContainerProps {
-    channels:any
-}
-    
-export const Container = ({channels }: ContainerProps) => {
-    const {setChannels} = useContext(ChannelsContext)
+import {useQuery} from 'react-query';
+import { getAllChannels } from '@/utils/api';
+import dynamic from 'next/dynamic';
+import { Spinner } from '../Spinner/Spinner';
+
+const Channels = dynamic(()=>import('../Channels/Channels'), 
+    {loading:  ()=> <Spinner/>});
+const MyTemplates = dynamic(()=>import('../MyTemplates/MyTemplates'), {loading:  ()=> <Spinner/>});
+
+export const Container = () => {
+    const {setChannels} = useChannelsContext()
     const [active, setActive] = useState('channels');
+    const {data,error, status}=useQuery('channels', ()=>getAllChannels())
 
     useEffect(()=>{
-        setChannels(channels)
-    },[channels,setChannels])
+        if(data) setChannels(data);
+    },[data, setChannels])
 
     return (
-        <ChannelsProvider>
+        <>
             <Sidebar active={active} setActive={setActive}/>
             <div className={style.content}>
-                {active==='channels' ? <Channels/> : <MyTemplates/>}
+                { status==='loading' ? <Spinner/> :
+                    active==='channels' ? <Channels/> : <MyTemplates/>}
             </div>
-        </ChannelsProvider>
+        </>
     );
 };

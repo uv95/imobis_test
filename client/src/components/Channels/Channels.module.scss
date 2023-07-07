@@ -5,20 +5,67 @@
     justify-content: space-between;
 }
 
-.myChannelsSection{
- 
+.channel{
+ font-size: 2rem;
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+ align-items: center;
+ position: relative;
+ width: 10rem;
 }
 
 .myChannels{
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
 }
 
-.allChannelsSection{
-  
+.delete{
+  position: absolute;
+  right: -1rem;
+  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover{
+     transform: scale(1.1);
+  }
+}
+
+.addChannel{
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+    &:hover{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       &::after{
+           content: '+';
+           font-size: 2.3rem;
+           width: 3rem;
+           height: 3rem;
+           border-radius: 50%;
+           text-align: center;
+           background-color: var(--ui-color);
+           color: white;
+           position: absolute;
+           ;
+           right: 0;
+           top: -1rem;
+       }
+    }
 }
 
 .allChannels{
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
 }

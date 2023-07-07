@@ -1,3 +1,10 @@
+export enum ChannelNames {
+    WHATSAPP='whatsapp',
+    TELEGRAM = 'telegram',
+    SMS = 'sms',
+    VKONTAKTE = 'vkontakte',
+}
+
 export enum Keyboard {
     STANDARD='standard',
     INLINE = 'inline'
@@ -21,7 +28,7 @@ export interface IMessage {
 }
 
 export interface IChannel{
-    name: string,
+    name: ChannelNames,
     id: string,
     messages : IMessage[]
 }

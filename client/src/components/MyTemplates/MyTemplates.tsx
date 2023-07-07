@@ -7,7 +7,7 @@ interface MyTemplatesProps {
  
 }
     
-export const MyTemplates = ({  }: MyTemplatesProps) => {
+const MyTemplates = ({  }: MyTemplatesProps) => {
     const [addNewTemplate, setAddNewTemplate] = useState(false);
     return (
         <div className={style.MyTemplates}>
@@ -19,3 +19,5 @@ export const MyTemplates = ({  }: MyTemplatesProps) => {
         </div>
     );
 };
+
+export default MyTemplates

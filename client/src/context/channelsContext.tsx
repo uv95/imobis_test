@@ -1,10 +1,12 @@
+'use client';
+
 import { IChannel } from '@/utils/types';
-import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useContext,  useMemo, useState } from 'react';
 
 
 interface IChannelsContext {
-    channels: IChannel[];
-  setChannels: React.Dispatch<React.SetStateAction<IChannel[]>>;
+ channels: IChannel[];
+ setChannels: React.Dispatch<React.SetStateAction<IChannel[]>>;
 }
 
 export const ChannelsContext = createContext<IChannelsContext>({
@@ -31,3 +33,5 @@ export const ChannelsProvider:FC<PropsWithChildren> = ({ children }) => {
         </ChannelsContext.Provider>
     );
 };
+
+export const useChannelsContext = () => useContext(ChannelsContext)
