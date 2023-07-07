@@ -1,3 +1,4 @@
+const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.createOne = (Model) =>
@@ -25,10 +26,9 @@ exports.createOne = (Model) =>
 
   exports.getOne = (Model,populateOptions='') =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findById(req.params.id).populate(populateOptions)
-    if (!doc) {
-      return next(new Error('Document not found!'));
-    }
+    const doc = await Model.findOne({id:req.params.id}).populate(populateOptions)
+
+    if (!doc)next(new AppError('Document not found!', 404));
 
     res.status(200).json({
       status: 'success',
@@ -43,7 +43,7 @@ exports.createOne = (Model) =>
         runValidators: true,
       });
 
-    if (!doc) next(new Error('Document not found!'));
+      if (!doc) next(new AppError('Document not found!', 404));
 
     res.status(200).json({
       status: 'success',
@@ -55,7 +55,7 @@ exports.createOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
 
-    if (!doc) next(new Error('Document not found!'));
+    if (!doc) next(new AppError('Document not found!', 404));
 
     res.status(204).json({
       status: 'success',

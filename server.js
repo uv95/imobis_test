@@ -7,6 +7,7 @@ const vkontakteRouter = require('./routes/vkontakteRouter');
 const smsRouter = require('./routes/smsRouter');
 const whatsappRouter = require('./routes/whatsappRouter');
 const telegramRouter = require('./routes/telegramRouter');
+const AppError = require('./utils/appError');
 
 const app = express();
 connectDB();
@@ -19,7 +20,7 @@ app.use('/whatsapp', whatsappRouter);
 app.use('/tg', telegramRouter);
 
 app.all('*', (req, res, next) => {
-    next(new Error('Страница не найдена'));
+    next(new AppError('Страница не найдена', 404));
   });
 
 app.listen(port, console.log(`Server running on ${port}`));
