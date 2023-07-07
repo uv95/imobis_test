@@ -2,7 +2,7 @@
 
 import { Channels } from '@/components/Channels/Channels';
 import { Main } from '@/components/Main/Main'
-import { NewTemplate } from '@/components/NewTemplate/NewTemplate';
+import { MyTemplates } from '@/components/MyTemplates/MyTemplates';
 import { Sidebar } from '@/components/Sidebar/Sidebar'
 import { useState } from 'react';
 import style from './page.module.css'
@@ -14,7 +14,7 @@ export default function Home() {
         <main className={style.main}>
             <Sidebar active={active} setActive={setActive}/>
             <Main>
-                {active==='channels' ? <Channels/> : <NewTemplate/>}
+                {active==='channels' ? <Channels/> : <MyTemplates/>}
             </Main>
         </main>
     )
