@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Form } from '../Form/Form';
-import style from './NewTemplate.module.scss';
+import { Form } from './Form/Form';
     
 interface NewTemplateProps {
     setAddNewTemplate: Dispatch<SetStateAction<boolean>>
@@ -8,9 +7,9 @@ interface NewTemplateProps {
     
 export const NewTemplate = ({ setAddNewTemplate }: NewTemplateProps) => {
     return (
-        <div className={style.NewTemplate}>
+        <div >
             <h1>Новый шаблон</h1>
-            <Form closeNewTemplate={()=>setAddNewTemplate(false)}/>
+            <Form closeForm={()=>setAddNewTemplate(false)}/>
         </div>
     );
 };

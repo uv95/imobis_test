@@ -40,3 +40,21 @@ export const addMessage = async (channel:ChannelNames, channelId:string, message
     }
 };
 
+export const deleteMessage = async (channel:ChannelNames, messageId:string) => {
+    try {
+        const res = await axios.delete(`${baseUrl}/${channel}/messages/${messageId}`)
+        return res.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+export const editMessage = async (channel:ChannelNames, messageId:string, message: IMessage) => {
+    try {
+        const res = await axios.patch(`${baseUrl}/${channel}/messages/${messageId}`, message)
+        return res.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+};
+

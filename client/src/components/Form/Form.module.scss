@@ -1,40 +1,44 @@
 .Form{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    & input, select {
-        height: 4rem;
-        padding: 0 1rem;
+  & input, select {
+    height: 4rem;
+    padding: 0 1rem;
 
-    }
+  }
 
-    & select {
-        width: 15rem;
-    }
+  & select {
+    width: 15rem;
+  }
 
 }
 
 .saveBtn{
-    width: fit-content;
-    margin: 4rem auto 0 auto;  
+  width: fit-content;
+  margin:0 auto;
+
+  &:first-of-type{
+    margin: 4rem auto 0; 
+  }
 }
 
 .inputGroup{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .radioGroup{
-    display: flex;
-    font-size: 1.5rem;
-    gap: 2rem;
+  display: flex;
+  font-size: 1.5rem;
+  gap: 2rem;
 }
 
 .radioItem {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }

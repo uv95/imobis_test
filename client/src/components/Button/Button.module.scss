@@ -9,19 +9,20 @@
   height: 4rem;
 
   &:hover{
-      opacity: 0.8;
+    opacity: 0.8;
   }
+
   &:active{
     color: inherit;
   }
 }
 
 .button-clear{
-    padding: 0;
+  padding: 0;
 
-    &--active{
-        background-color: var(--bg-color);
-    }
+  &--active{
+    background-color: var(--bg-color);
+  }
 }
 
 .button-add{

@@ -8,32 +8,42 @@ import { channelsWithIcons } from '@/utils/channelsWithIcons';
 import { lowercaseFirstLetter } from '@/utils/lowercaseFirstLetter';
 import { useChannelsContext } from '@/context/channelsContext';
 import { MessageButtons } from '../MessageButtons/MessageButtons';
-import { useMutation } from 'react-query';
-import { addMessage } from '@/utils/api';
+import { useMutation, useQueryClient } from 'react-query';
+import { addMessage, editMessage } from '@/utils/api';
     
 interface FormProps {
-    closeNewTemplate: () => void
+    closeForm: () => void
+    isEdit?:boolean
+    messageData?:IMessage
+    channelName?:ChannelNames
 }
     
-export const Form = ({ closeNewTemplate }: FormProps) => {
+export const Form = ({ closeForm,isEdit,messageData,channelName }: FormProps) => {
+    const queryClient = useQueryClient();
+
     const {channels} = useChannelsContext();
     const [selectedChannel, setSelectedChannel] = useState<ChannelNames>(channels[0].name)
-    const currentChannel = channels.find(c=>c.name===selectedChannel);
+    const currentChannel = channels.find(c=>c.name===(isEdit?channelName:selectedChannel));
 
-    const [formData, setFormData]=useState<IMessage>({
+    const [formData, setFormData]=useState<IMessage>(isEdit? messageData! : {
         title: 'Новый шаблон',
         text: '',
         buttons: [],
         keyboard: Keyboard.STANDARD,
-        id: ''
     })
-    const [buttons, setButtons] = useState<IMessageButton[]>([])
+    const [buttons, setButtons] = useState<IMessageButton[]>(isEdit? messageData?.buttons! : [])
 
     const addNewMessage = useMutation({
         mutationFn: ()=>addMessage(selectedChannel, currentChannel?.id!,
             formData
         ),
-        // onSuccess: ()=>queryClient.invalidateQueries('channels')
+        onSuccess: ()=>queryClient.invalidateQueries('channels')
+    })
+    const editExistingMessage = useMutation({
+        mutationFn: ()=>editMessage(channelName!, formData._id!,
+            formData
+        ),
+        onSuccess: ()=>queryClient.invalidateQueries('channels')
     })
 
     useEffect(()=>{
@@ -41,9 +51,6 @@ export const Form = ({ closeNewTemplate }: FormProps) => {
             ...formData, buttons
         })
     }, [buttons])
-
-
-    const onSubmit = ()=>{}
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormData({
@@ -56,23 +63,25 @@ export const Form = ({ closeNewTemplate }: FormProps) => {
     const onSelect = (e:React.ChangeEvent<HTMLSelectElement>)=>{
         setSelectedChannel(lowercaseFirstLetter(e.target.value) as ChannelNames)
     }
-
     return (
-        <form className={style.Form}>
+        <form onSubmit={()=>{
+            isEdit? editExistingMessage.mutate() : addNewMessage.mutate()
+            closeForm()
+        }} className={style.Form}>
             <div className={style.inputGroup}>
                 <label htmlFor="title">Название</label>
                 <input onChange={onChange} id='title' type="text" defaultValue={formData.title}/>
             </div>
             
             <div className={style.selectGroup}>
-                <select onChange={onSelect} name="chooseChannels" id="chooseChannels">
+                <select onChange={onSelect} name="chooseChannels" id="chooseChannels" value={channelName} disabled={isEdit}>
                     {channels.map(channel=>(
-                        <option key={channel.name} defaultValue='whatsapp'>{capitalizeFirstLetter(channel.name)}</option>
+                        <option key={channel.name} value={channel.name}>{capitalizeFirstLetter(channel.name)}</option>
                     ))}
                 </select>
             </div>
 
-            <MessageInput onChange={onChange} icon={channelsWithIcons.find(c=>c.name===selectedChannel)!.icon} title={capitalizeFirstLetter(selectedChannel)}/>
+            <MessageInput currentText={formData?.text} onChange={onChange} icon={channelsWithIcons.find(c=>c.name===(isEdit? channelName :selectedChannel))!.icon} title={capitalizeFirstLetter(isEdit? channelName! :selectedChannel)}/>
 
             <div className={style.radioGroup}>
                 {Object.values(Keyboard).map(val=>(
@@ -83,13 +92,12 @@ export const Form = ({ closeNewTemplate }: FormProps) => {
                 ))}
             </div>
 
-            {currentChannel!.keyboard && <MessageButtons settings={channels.find(channel=>channel.name===selectedChannel)!.keyboard![formData.keyboard as Keyboard]} setButtons={setButtons} buttons={buttons}
+            {currentChannel!.keyboard && 
+            <MessageButtons settings={channels.find(channel=>channel.name===selectedChannel)!.keyboard![formData.keyboard as Keyboard]} setButtons={setButtons} buttons={buttons}
             />}
 
-            <Button className={style.saveBtn} btnType='save' onClick={()=>{
-                addNewMessage.mutate()
-                closeNewTemplate()
-            }}>Сохранить</Button>
+            <Button isSubmit className={style.saveBtn} btnType='save' >Сохранить</Button>
+            <Button className={style.saveBtn} onClick={closeForm}>Назад</Button>
         </form>
     );
 };
