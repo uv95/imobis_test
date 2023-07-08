@@ -6,6 +6,7 @@ import { ChannelNames } from '@/utils/types';
 import { addChannel, deleteChannel } from '@/utils/api';
 import { classNames } from '@/utils/classNames';
 import {useMutation,useQueryClient} from 'react-query';
+import DeleteItem from '../DeleteItem/DeleteItem';
 
 interface ChannelProps {
   channel: {name:ChannelNames,icon:string, id?:string};
@@ -30,9 +31,8 @@ export const Channel = ({ channel, className,mode }: ChannelProps) => {
             {}, [className||'']
         )}  onClick={()=>mode==='add' && addNewChannel.mutate()}
         >
-            {channel.id&& <div className={style.delete}
-                onClick={()=>removeChannel.mutate()}
-            >✕</div>}
+            {channel.id && <DeleteItem onDelete={()=>removeChannel.mutate()}/>
+            }
             <Image src={channel.icon} width='60' height='60' alt={channel.name}/>
             <p>{channel.name[0].toUpperCase()+channel.name.slice(1)}</p>
         </div>

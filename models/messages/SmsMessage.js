@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const SmsMessageSchema = new mongoose.Schema({
+ title: {type: String, default: "Новый шаблон"},
 text: { 
         type: String,
         required:[true, "Текст не должен быть пустым!"], 

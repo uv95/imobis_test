@@ -1,6 +1,7 @@
 .Sidebar{
     border-right: 1px solid var(--bg-color);
     width: 20rem;
+    min-width: 20rem;
     height: 100%;
     padding: 2rem;
     display: flex;

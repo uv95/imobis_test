@@ -3,17 +3,19 @@ import style from './MessageInput.module.scss';
     
 interface MessageInputProps {
     icon: string, 
-    title: string
+    title: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void, 
+
 }
     
-export const MessageInput = ({ icon, title }: MessageInputProps) => {
+export const MessageInput = ({ icon, title,onChange}: MessageInputProps) => {
     return (
         <div className={style.MessageInput}>
-            <label htmlFor="message">
+            <label htmlFor="text">
                 <Image src={icon} width='30' height='30' alt='icon'/>
                 {title}
             </label>
-            <textarea name="message" id="message" cols={30} rows={8}></textarea>
+            <textarea onChange={onChange} id="text" cols={30} rows={8}></textarea>
         </div>
     );
 };

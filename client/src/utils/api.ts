@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ChannelNames } from './types';
+import { ChannelNames, IMessage } from './types';
 
 export const baseUrl = 'http://localhost:3001';
 
@@ -31,9 +31,9 @@ export const deleteChannel = async (channel:ChannelNames, id:string) => {
     }
 };
 
-export const addMessage = async (channel:ChannelNames, channelId:string, text: string) => {
+export const addMessage = async (channel:ChannelNames, channelId:string, message: IMessage) => {
     try {
-        const res = await axios.post(`${baseUrl}/${channel}/${channelId}`, text)
+        const res = await axios.post(`${baseUrl}/${channel}/${channelId}`, message)
         return res.data.data; 
     } catch (error) {
         console.log(error)

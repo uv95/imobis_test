@@ -24,26 +24,6 @@
     }
 }
 
-.delete{
-  position: absolute;
-  right: -1rem;
-  border: 1px solid black;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  font-size: 1.3rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-
-  &:hover{
-     transform: scale(1.1);
-  }
-}
-
 .addChannel{
     cursor: pointer;
     position: relative;
@@ -59,7 +39,7 @@
            height: 3rem;
            border-radius: 50%;
            text-align: center;
-           background-color: var(--ui-color);
+           background-color: var(--ui-color-violet);
            color: white;
            position: absolute;
            ;

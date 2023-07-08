@@ -10,25 +10,39 @@ export enum Keyboard {
     INLINE = 'inline'
 }
 
-export interface IMessage {
+export interface IMessageButton{
     text: string,
-    keyboard : { 
-        current: Keyboard,
-        standard: { 
-                maxButtons: number,   
-                maxTextLength: number,
-                supportsLinks:boolean
-                },
-        inline: { 
-                maxButtons: number,   
-                maxTextLength: number,
-                supportsLinks: boolean
-                }
-            }
+    isLink: boolean,
+    link:string
+}
+
+export interface IStandardKeyboard{
+    maxButtons: number,   
+    maxTextLength: number,
+    supportsLinks:boolean
+}
+
+export interface IInlineKeyboard{
+    maxButtons: number,   
+    maxTextLength: number,
+    supportsLinks: boolean
+}
+
+export interface IKeyboardSettings {
+    standard: IStandardKeyboard,
+    inline: IInlineKeyboard
+        }
+
+export interface IMessage {
+    title: string,
+    text: string,
+    keyboard?: Keyboard,
+    buttons?: IMessageButton[]
 }
 
 export interface IChannel{
     name: ChannelNames,
+    keyboard? : IKeyboardSettings,
     id: string,
     messages : IMessage[]
 }

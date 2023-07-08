@@ -2,6 +2,18 @@ const mongoose = require('mongoose');
 
 const TelegramSchema = new mongoose.Schema({
   name: {type:String, default:'telegram'},
+  keyboard : { 
+    standard: { 
+            maxButtons: {type:Number, default: -1},   
+            maxTextLength: {type:Number, default: -1},
+            supportsLinks:{type:Boolean, default:false}
+            },
+    inline: { 
+            maxButtons: {type:Number, default: -1},   
+            maxTextLength: {type:Number, default: 64},
+            supportsLinks: {type:Boolean, default:true}
+            }
+        },
   createdAt: Number,
   },
   {

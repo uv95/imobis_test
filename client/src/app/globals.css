@@ -6,7 +6,9 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
     --bg-color: rgb(237, 237, 237);
-    --ui-color: rgba(162, 0, 255, 0.444);
+    --ui-color-gray: rgb(200, 200, 200);
+    --ui-color-violet: rgba(124, 0, 195, 0.653);
+    --ui-color-red: rgba(219, 0, 0, 0.859);
 }
 
 * {

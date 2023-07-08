@@ -3,9 +3,10 @@
   background-color: inherit;
   cursor: pointer;
   font-size: 1.5rem;
-  padding: 1rem 2.5rem;
+  padding: 0 2.5rem;
   border-radius: 1rem;
   transition: all 0.1s;
+  height: 4rem;
 
   &:hover{
       opacity: 0.8;
@@ -16,7 +17,7 @@
 }
 
 .button-clear{
-    padding: 1rem 0;
+    padding: 0;
 
     &--active{
         background-color: var(--bg-color);
@@ -24,6 +25,25 @@
 }
 
 .button-add{
-  border: 1px solid var(--bg-color);
+  border: 1px solid var(--ui-color-gray);
+}
+
+.button-gray{
+  background-color: var(--bg-color);
+}
+
+.button-save, .button-cancel{
+  color: white;
+  padding: 0 1rem;
+  min-width: 4rem;
+  font-weight: bold !important;
+}
+
+.button-save {
+  background-color: var(--ui-color-violet);
+}
+
+.button-cancel {
+  background-color: var(--ui-color-red);
 }
 
