@@ -38,6 +38,7 @@ export interface IMessage {
     text: string,
     keyboard?: Keyboard,
     buttons?: IMessageButton[]
+    id:string
 }
 
 export interface IChannel{

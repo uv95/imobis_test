@@ -1,0 +1,24 @@
+.empty{
+        font-size: 1.5rem;
+        padding-bottom: 2rem;
+}
+
+.channel{
+    padding: 2rem;
+    border: 1px solid var(--bg-color);
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+}
+
+.channelName{
+    font-size: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.templates{
+    display: flex;
+    gap: 2rem;
+}

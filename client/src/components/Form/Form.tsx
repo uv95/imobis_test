@@ -24,7 +24,8 @@ export const Form = ({ closeNewTemplate }: FormProps) => {
         title: 'Новый шаблон',
         text: '',
         buttons: [],
-        keyboard: Keyboard.STANDARD
+        keyboard: Keyboard.STANDARD,
+        id: ''
     })
     const [buttons, setButtons] = useState<IMessageButton[]>([])
 
