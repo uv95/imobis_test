@@ -23,6 +23,10 @@ const WhatsappMessageSchema = new mongoose.Schema({
             supportsLinks: {type:Boolean, default:true}
                 }
             },
+     buttons: [{
+              text: {type:String, required:[true, "Текст кнопки не должен быть пустым!"]},
+              isLink: {type: Boolean, default: false}
+      }], 
     channel:{
          type: mongoose.Schema.Types.ObjectId,
         ref: 'Whatsapp',

@@ -1,0 +1,1 @@
+export const lowercaseFirstLetter = (text:string) => text[0].toLowerCase()+text.slice(1)
