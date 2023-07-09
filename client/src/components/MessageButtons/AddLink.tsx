@@ -8,11 +8,11 @@ const AddLink = ({btnData,onChange}: Props) => {
     return (
         <div className={style.addBtnLink}>
             <div className={style.checkbox}>
-                <input type="checkbox" id='isLink' checked={btnData.isLink} onChange={onChange}/>
+                <input required type="checkbox" id='isLink' checked={btnData.isLink} onChange={onChange}/>
                 <label htmlFor="isLink">Ссылка</label>
             </div>
             {btnData.isLink &&
-            <input onChange={onChange} type="text" id='link' placeholder='Текст ссылки...'/>
+            <input onChange={onChange} type="text" id='link' placeholder='Ссылка'/>
             }
         </div>
     )

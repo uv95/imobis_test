@@ -25,9 +25,10 @@ const MyTemplates = ({  }: MyTemplatesProps) => {
         <div className={style.myTemplates}>
             {!addNewTemplate && !editTemplate && <>
                 <h1>Мои шаблоны</h1>
-                <Button className={style.addTemplateBtn} btnType='add' onClick={()=>setAddNewTemplate(true)}>+ Новый шаблон</Button> 
             
                 {channels.every(channel=>channel.messages.length===0) && <p className={style.empty}>Список шаблонов пуст.</p>}
+
+                {channels.length ? <Button className={style.addTemplateBtn} btnType='add' onClick={()=>setAddNewTemplate(true)}>+ Новый шаблон</Button>  : <p className={style.addChannelWarning}>Чтобы создать новый шаблон, добавьте каналы.</p>}
 
                 <div className={style.channelsList}>
                     {channels.filter(channel=>channel.messages.length).map(channel=>(

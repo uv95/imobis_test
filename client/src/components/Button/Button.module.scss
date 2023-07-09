@@ -33,13 +33,6 @@
   background-color: var(--bg-color);
 }
 
-.button-save, .button-cancel{
-  color: white;
-  padding: 0 1rem;
-  min-width: 4rem;
-  font-weight: bold !important;
-}
-
 .button-save {
   background-color: var(--ui-color-violet);
 }
@@ -47,4 +40,19 @@
 .button-cancel {
   background-color: var(--ui-color-red);
 }
+
+.button-save, .button-cancel{
+  color: white;
+  padding: 0 1rem;
+  min-width: 4rem;
+  font-weight: bold !important;
+
+  &:active{
+    color: white;
+    transform: scale(0.95);
+  }
+}
+
+
+
 

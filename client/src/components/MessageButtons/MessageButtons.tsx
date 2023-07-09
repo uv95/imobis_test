@@ -22,9 +22,10 @@ export const MessageButtons = ({ buttons, setButtons, settings }: MessageButtons
         link: ''
     })
     const addNewButton = () =>{
-        setButtons([...buttons, btnData])
-        setEditBtn(false)
-        setShowAddBtn(true)
+        if(btnData.text)
+        { setButtons([...buttons, btnData])
+            setEditBtn(false)
+            setShowAddBtn(true)}
     }
     const deleteButton = (text:string) =>{
         setButtons(buttons.filter(btn=>btn.text!==text))
@@ -42,7 +43,11 @@ export const MessageButtons = ({ buttons, setButtons, settings }: MessageButtons
             <div className={style.messageButtons}>
                 {buttons.map(btn=>(
                     <div key={btn.text} className={style.button}>
-                        <Button btnType='gray'>{btn.isLink? <Link href={btn.link}>{btn.text}</Link> : btn.text}</Button>
+                        <Button btnType='gray'>
+                            {btn.isLink ? 
+                                <Link href={btn.link}>🔗 {btn.text}</Link> : 
+                                btn.text}
+                        </Button>
                         <DeleteItem onDelete={()=>deleteButton(btn.text)}/>
                     </div>
                 )) 

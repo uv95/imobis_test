@@ -12,7 +12,7 @@ type Props = {
 const AddButtonText = ({settings,onChange,onClick,addNewButton}: Props) => {
     return (
         <div className={style.addBtnText}>
-            <input onChange={onChange} type="text" id='text' placeholder='Текст кнопки...' maxLength={settings.maxTextLength>0 ? settings.maxTextLength:undefined}/>
+            <input onChange={onChange} required type="text" id='text' placeholder='Текст кнопки...' maxLength={settings.maxTextLength>0 ? settings.maxTextLength:undefined}/>
             <Button btnType='save' onClick={addNewButton}>Добавить</Button>
             <Button btnType='cancel' onClick={onClick}>Отмена</Button>
         </div>
