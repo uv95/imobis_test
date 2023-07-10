@@ -1,4 +1,5 @@
 
+import { createPortal } from 'react-dom';
 import style from './Modal.module.scss';
 
 type ModalProps = {
@@ -8,12 +9,12 @@ type ModalProps = {
 };
 
 export default function Modal({ children, close, className }: ModalProps) {
-    return (
+    return createPortal(
         <>
             <div className={style.backdrop} onClick={close}></div>
             <div id="modal" className={`${style.modal} ${className||''}`}>
                 {children}
             </div>
-        </>
+        </>, document.body
     );
 }
